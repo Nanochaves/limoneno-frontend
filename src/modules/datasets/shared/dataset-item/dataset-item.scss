@@ -1,0 +1,23 @@
+@import '../../../../styles/all.scss';
+
+.dataset__item {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+    .icon {
+        font-size: 50px;
+        color: #666;
+    }
+
+    .title {
+        @extend .h4;
+        color: #666;
+    }
+
+}
+
+.transfer_select {
+    width: 100%;
+}

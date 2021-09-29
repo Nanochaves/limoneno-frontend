@@ -1,0 +1,54 @@
+@import '../../../../styles/all.scss';
+
+.mapper_modal {
+  min-width: 750px;
+
+  .mapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  
+    .mapper_content {
+      height: 100%;
+      width: 100%;
+      padding: 10px 20px;
+  
+      .free_pool {
+        padding-bottom: 10px;
+        font-weight: bold;
+        font-size: 18px;
+       }
+  
+      .users_list {
+        border: 1px solid #DDD;
+        height: 400px;
+        overflow-y: scroll;
+  
+        .dark {
+          background: #FCFCFC;
+          font-weight: bold;
+        }
+  
+        .users_item {
+          display: flex;
+          flex-direction: row;
+          height: 40px;
+          width: 100%;
+          line-height: 40px;
+          border-bottom: 1px solid #DDD;
+  
+          .users_info {
+            width: 100%;
+          }
+          .users_pool {
+            width: 40%;
+            margin-right: 20px;
+            margin-left: 40px;
+          }
+        }
+      }
+    }
+  }  
+}

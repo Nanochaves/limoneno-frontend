@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: limoneno-frontend
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: limoneno-frontend
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 70

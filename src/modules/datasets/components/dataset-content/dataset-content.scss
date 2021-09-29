@@ -1,0 +1,54 @@
+.showcase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .top {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 50px;
+
+        .breadcum {
+            width: 100%;
+            display: flex;
+            padding-top: 10px;
+            flex-direction: row;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+
+            .load {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .dataset__content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: flex-start;
+        padding: 20px 10px;
+        flex-wrap: wrap;
+
+        .empty {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+    }
+}

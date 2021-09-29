@@ -1,0 +1,112 @@
+@import '../../../../styles/all.scss';
+
+.project__create {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .steps {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+
+        .step {
+            width: 90%;
+            text-align: left;
+
+            .action {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .project__content {
+        height: 100%;
+        width: 100%;
+        padding: 10px 20px;
+
+        .datasets_list, .users_list {
+            border: 1px solid #DDD;
+            height: 400px;
+            overflow-y: scroll;
+
+            .dark {
+                background: #FCFCFC;
+                font-weight: bold;
+            }
+
+            .datasets_item, .users_item {
+                display: flex;
+                flex-direction: row;
+                height: 40px;
+                width: 100%;
+                border-bottom: 1px solid #DDD;
+
+                .datasets_name, .users_name {
+                    width: 100%;
+                }
+
+                .datasets_elements, .users_elements {
+                    width: 100%;
+                }
+
+                .datasets_delete, .users_delete {
+                    cursor: pointer;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .inputs {
+        margin-bottom: 10px;
+        width: 600px;
+
+
+        .label {
+            width: 100%;
+            text-align: left;
+            height: 30px;
+        }
+
+        .inline {
+            display: flex;
+            flex-direction: row;
+
+            button {
+                margin-left: 5px;
+            }
+
+            .space {
+                margin-right: 5px;
+            }
+        }
+
+        .checkbox {
+            display: flex;
+            flex-direction: row;
+        }
+
+
+    }
+
+    .checkbox {
+        display: flex;
+
+        .checkbox__label {
+            margin-left: 10px;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+
+        .space__button {
+            margin-right: 5px;
+        }
+    }
+}

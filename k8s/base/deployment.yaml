@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: limoneno-frontend
+spec:
+  template:
+    spec:
+      containers:
+      - name: limoneno-frontend
+        image: 953994510734.dkr.ecr.us-east-1.amazonaws.com/limoneno-frontend
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+
+        startupProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          failureThreshold: 10
+          periodSeconds: 10
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          failureThreshold: 10
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          failureThreshold: 10
+          periodSeconds: 10

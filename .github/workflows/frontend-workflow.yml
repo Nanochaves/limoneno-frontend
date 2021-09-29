@@ -1,0 +1,87 @@
+name: Limoneno frontend workflow
+
+on:
+    push:
+        branches: [master]
+    workflow_dispatch:
+
+env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_DEFAULT_REGION: us-east-1
+    CLUSTER_NAME: limoneno
+
+jobs:
+    build:
+        name: Build image
+        runs-on: ubuntu-latest
+        steps:
+        - name: Check out repository
+          uses: actions/checkout@v2
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+        - name: Login to Amazon ECR
+          id: login-ecr
+          uses: aws-actions/amazon-ecr-login@v1
+
+        - name: Install skaffold
+          run: |
+            curl -L -o /tmp/skaffold https://storage.googleapis.com/skaffold/releases/v1.32.0/skaffold-linux-amd64
+            sudo install /tmp/skaffold /usr/local/bin/
+
+        - name: Build Image
+          run: |
+            skaffold build -p prod --file-output build-state.json
+
+        - name: Upload build state
+          uses: actions/upload-artifact@v2
+          with:
+            name: build-state
+            path: build-state.json
+
+    deploy:
+        name: Deploy to cluster
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+        - name: Check out repository
+          uses: actions/checkout@v2
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+        - name: Login to Amazon ECR
+          id: login-ecr
+          uses: aws-actions/amazon-ecr-login@v1
+
+        - name: Create kubeconfig
+          run: |
+            aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }}
+
+        - name: Install kustomize, kubectl and skaffold
+          run: |
+            cd /tmp
+            curl -L -o /tmp/kubectl "https://storage.googleapis.com/kubernetes-release/release/v1.22.2/bin/linux/amd64/kubectl"
+            sudo install /tmp/kubectl /usr/local/bin/
+            curl -L -o /tmp/skaffold https://storage.googleapis.com/skaffold/releases/v1.32.0/skaffold-linux-amd64
+            sudo install /tmp/skaffold /usr/local/bin/
+            curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+
+        - name: Download build state
+          uses: actions/download-artifact@v2
+          with:
+            name: build-state
+
+        - name: Deploy to cluster
+          run: |
+            skaffold deploy -n limoneno -p prod -a build-state.json -n limoneno

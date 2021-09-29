@@ -1,0 +1,18 @@
+.workspace__stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+
+    .card {
+        width: 350px;
+        margin-right: 20px;
+        height: 183px;
+
+        .text {
+            font-size: 14px;
+        }
+    }
+}

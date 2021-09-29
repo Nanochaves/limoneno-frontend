@@ -1,0 +1,29 @@
+@import '../../../../styles/all.scss';
+
+.users__list {
+    width: 100%;
+
+    .portrait {
+        height: 50px;
+        width: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        border: 1px solid #CCC;
+        border-radius: 50px;
+
+        @extend .h2
+    }
+
+    .edit__button {
+        @extend .warning;
+        margin-right: 10px;
+    }
+
+    .delete__button {
+        @extend .danger;
+        margin-right: 10px;
+    }
+}

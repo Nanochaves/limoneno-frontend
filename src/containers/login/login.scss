@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  height: calc(100vh - 60px);
+  width: 100wh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  .box {
+    width: 400px;
+    height: 300px;
+    padding: 20px;
+
+    .auth {
+      padding-top: 10px;
+    }
+
+    Form {
+      padding-top: 20px
+    }
+
+    Input {
+      height: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .login {
+        padding: 5px 30px;
+      }
+    }
+  }
+}

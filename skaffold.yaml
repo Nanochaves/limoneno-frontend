@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta20
+kind: Config
+metadata:
+  name: limoneno-frontend
+build:
+  artifacts:
+  - image: 953994510734.dkr.ecr.us-east-1.amazonaws.com/limoneno-frontend
+    docker:
+      buildArgs:
+        REACT_APP_ENV: "{{.REACT_APP_ENV}}"
+  local: {}
+deploy:
+  kustomize:
+    paths:
+    - k8s/base
+    defaultNamespace: limoneno
+profiles:
+- name: prod
+  deploy:
+    kustomize:
+      paths:
+      - k8s/prod
+      defaultNamespace: limoneno

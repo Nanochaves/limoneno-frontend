@@ -1,0 +1,36 @@
+@import '../../../styles/all.scss';
+
+.users {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px;
+
+        .top {
+            display: flex;
+            flex-direction: row;
+            height: 50px;
+        }
+    
+        .breadcum {
+            padding-top: 10px;
+            width: 100%;
+            display: flex;
+        }
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 100%;
+        border-left: 1px solid #CCC;
+    }
+    
+}

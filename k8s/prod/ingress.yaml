@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: limoneno-frontend
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    alb.ingress.kubernetes.io/healthcheck-path: /api/v1
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:953994510734:certificate/b5f99ec8-e91c-493a-ab33-f9690473ce00
+    alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:us-east-1:953994510734:regional/webacl/limoneno/07b27eae-04ab-489e-8e06-895e4a46bb05
+
+
+spec:
+  rules:
+  - host: frontend.limoneno.indexlabs.com.uy
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: ssl-redirect
+          servicePort: use-annotation
+      - path: /*
+        backend:
+          serviceName: $(APP_SERVICE)
+          servicePort: http

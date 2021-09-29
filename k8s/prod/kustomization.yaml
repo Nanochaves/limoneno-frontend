@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- ../base
+
+nameSuffix: -prod
+
+commonLabels:
+  app.kubernetes.io/name: limoneno-frontend-prod
+
+vars:
+- name: APP_SERVICE
+  objref:
+    kind: Service
+    name: limoneno-frontend
+    apiVersion: v1
+  fieldref:
+    fieldpath: metadata.name
+
+resources:
+  - ingress.yaml
+  - hpa.yaml
+  - pdb.yaml
+
+patchesStrategicMerge:
+  - deployment.yaml
+
+configurations:
+- config.yaml

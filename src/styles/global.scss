@@ -1,0 +1,27 @@
+h4, .h4 {
+    font-size: 15px;
+}
+
+h3, .h3 {
+    font-size: 17px;
+}
+
+h2, .h2 {
+    font-size: 22px;
+}
+
+h1, .h1 {
+    font-size: 30px;
+}
+
+.warning {
+    background: rgb(255, 251, 232);
+    border: 1px solid rgb(252, 229, 154);
+    color: #000;
+}
+
+.danger {
+    background: rgb(253, 241, 240);
+    border: 1px solid rgb(243, 167, 161);
+    color: #000;
+}

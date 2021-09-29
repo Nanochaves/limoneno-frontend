@@ -1,0 +1,89 @@
+@import '../../../../styles/all.scss';
+
+.project {
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid #CCC;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .icon {
+        font-size: 70px;
+    }
+
+    .title {
+        @extend .h3;
+    }
+
+    .project__name {
+        min-width: 300px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .project__workout {
+        max-width: 300px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .project__freepool {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        .user__portrait {
+            height: 30px;
+            width: 30px;
+            border-radius: 30px;
+            font-size: 20px;
+            border: 1px solid #CCC;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+    }
+
+    .project__progress{
+        width: 100%;
+        max-width: 300px;
+        padding: 0px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .project__actions{
+        width: 100%;
+        max-width: 320px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        .space {
+            margin-right: 5px;
+        }
+    }
+}

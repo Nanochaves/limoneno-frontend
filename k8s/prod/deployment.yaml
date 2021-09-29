@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: limoneno-frontend
+spec:
+  template:
+    spec:
+      # topologySpreadConstraints:
+      # - maxSkew: 1
+      #   topologyKey: topology.kubernetes.io/zone
+      #   whenUnsatisfiable: DoNotSchedule
+
+      containers:
+      - name: limoneno-frontend
+        resources:
+          requests:
+            cpu: 200m
+            memory: 400Mi
+      nodeSelector:
+        instance-class: compute
+      tolerations:
+      - effect: NoSchedule
+        key: instance-class
+        operator: Equal
+        value: compute

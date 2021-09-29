@@ -1,0 +1,15 @@
+@import '../../../../styles/all.scss';
+
+.dataset {
+    height: 100px;
+    width: 150px;
+    cursor: pointer;
+
+    .icon {
+        font-size: 70px;
+    }
+
+    .title {
+        @extend .h3;
+    }
+}
