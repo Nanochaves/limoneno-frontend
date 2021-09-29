@@ -37,7 +37,7 @@ jobs:
 
         - name: Build Image
           run: |
-            skaffold build -p prod --file-output build-state.json
+            REACT_APP_ENV=prod skaffold build -p prod --file-output build-state.json
 
         - name: Upload build state
           uses: actions/upload-artifact@v2
